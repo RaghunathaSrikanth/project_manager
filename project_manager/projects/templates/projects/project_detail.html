@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ project.title }}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>{{ project.title }}</h1>
+    <img src="{{ project.photo.url }}" alt="{{ project.title }}">
+    <p>{{ project.description }}</p>
+    <a href="{{ project.file.url }}">Download File</a>
+
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in project.comments.all %}
+        <li><strong>{{ comment.name }}:</strong> {{ comment.text }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="{% url 'add_comment' project.id %}">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="text" placeholder="Your Comment" required></textarea>
+        <button type="submit">Add Comment</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Projects</h1>
+    <div class="project-list">
+        {% for project in projects %}
+        <div class="project-item">
+            <h2><a href="{{ project.id }}/">{{ project.title }}</a></h2>
+            <p>{{ project.description|truncatewords:20 }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
